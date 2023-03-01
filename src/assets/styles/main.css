@@ -1,0 +1,90 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Calibri, sans-serif;
+    background-color: rgb(238, 238, 238);
+    margin: 0;
+}
+
+header,
+main {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+img {
+    max-width: 100%;
+}
+
+a:link,
+a:hover,
+a:visited,
+a:active {
+    color: blue;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+footer {
+    background-color: #ddd;
+    font-size: smaller;
+    padding: 1rem;
+    margin-top: 5rem;
+    border-top: 2px solid black;
+}
+
+header {
+    display: grid;
+    grid-template-areas:
+        "site-title   nav"
+        "page-title   page-title";
+    margin-bottom: 1rem;
+}
+
+header h1 {
+    grid-area: site-title;
+    margin: 0;
+    padding-top: 1rem;
+    font-size: 7vw;
+}
+
+header h2 {
+    grid-area: page-title;
+    margin: 0;
+    padding-top: 0.5rem;
+}
+
+header nav {
+    grid-area: nav;
+    justify-self: end;
+    align-self: center;
+}
+
+main p {
+    line-height: 1.5;
+}
+li { margin-bottom: 0.5rem; }
+.listing li.start { border-top: thin solid black; padding-top: 0.25rem;}
+h3 { margin-bottom: 0; padding-bottom: 0; }
+ul.listing { line-height: 1.25; margin-top: 0.5rem;}
+ul.listing li { margin-bottom: 0.5rem;}
+ul.listing li .name { font-weight: bold;}
+ul.listing li .motivation { font-style: italic; }
+.common-motivation { padding-left: 1.8rem; font-size: larger; font-style: italic; margin-top: 0.5rem; margin-bottom: 0.5rem;}
+.prize p { margin-top:0.5rem; margin-bottom: 0.5rem;}
+.laureates li { margin-bottom: 1rem;}
+.container-prizes {
+    display:grid;
+    grid-gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
+}
+.container-prizes section {
+  padding: 1rem;
+  border: thin solid black;
+}
+section.prize h3 { margin-top: 0.5rem;}

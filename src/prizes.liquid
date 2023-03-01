@@ -1,0 +1,25 @@
+---
+title: API paging and combining with Nobel Prizes
+layout: base
+---
+<div class="container-prizes">
+  {% for prize in prizes.nobelPrizes %}
+    <section class="prize">
+      <h3>{% render "prize" with prize as prize %}</h3>
+      <ul class="laureates">
+        {% for laureate in prize.laureates %}
+          <li>
+            <strong>{% laureateDisplayName laureate %}</strong>
+            <p class="motivation">
+              <em>{{ laureate.motivation.en }}</em>
+            </p>
+            {% assign laureateDetail = laureates.byId[laureate.id] %}
+            {% if laureateDetail.birth %}
+              <p class="born">Born: {{ laureateDetail.birth.date }} | {{ laureateDetail.birth.place.locationString.en }}</p>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    </section>
+  {% endfor %}
+</div>
