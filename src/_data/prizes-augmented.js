@@ -39,12 +39,17 @@ module.exports = async function () {
       responseData.nobelPrizes.forEach(p => {
         if ("laureates" in p ){
 
+          /* logic to see whether all laureate "motivations"
+             are the same */
           let motivations = p.laureates.map(l => l.motivation.en);
           console.log(motivations);
-          let motivationsSame = allEqual(motivations);
+          let motivationsSame = allEqual(motivations); /* allEqual defined 'at top' */
           p._motivationsSame = motivationsSame;
           p._motivation = motivations[0];
           console.log(motivationsSame);
+
+          /* request detailed laureate data 
+             and add to (_detail) data in prizes */
           p.laureates.forEach(
             (l) => { 
               if ("id" in l) { 
@@ -83,22 +88,3 @@ async function getLaureateInfo(id) {
     console.log(err);
   }
 }
-
-
-/* API requests return 
-  So logic is to look at "links.next" for a value
-  meta: {
-    offset: 0,
-    limit: 100,
-    count: 664,
-    terms: 'https://www.nobelprize.org/about/terms-of-use-for-api-nobelprize-org-and-data-nobelprize-org/',
-    license: 'https://www.nobelprize.org/about/terms-of-use-for-api-nobelprize-org-and-data-nobelprize-org/#licence',
-    disclaimer: 'https://www.nobelprize.org/about/terms-of-use-for-api-nobelprize-org-and-data-nobelprize-org/#disclaimer'
-  },
-  links: {
-    first: 'https://masterdataapi.nobelprize.org/2.1/nobelPrizes?offset=0&limit=100',
-    self: 'https://masterdataapi.nobelprize.org/2.1/nobelPrizes?offset=0&limit=100',
-    next: 'https://masterdataapi.nobelprize.org/2.1/nobelPrizes?offset=100&limit=100',
-    last: 'https://masterdataapi.nobelprize.org/2.1/nobelPrizes?offset=600&limit=100'
-  }
-  */

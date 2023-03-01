@@ -1,5 +1,5 @@
 const eleventyFetch = require("@11ty/eleventy-fetch");
-const cacheDuration = '1d';
+const cacheDuration = "1d";
 const limit = 100;
 
 module.exports = async function () {
@@ -15,11 +15,11 @@ module.exports = async function () {
   */
   let requestParams = {
     limit: limit,
-    offset: 0
-  }
+    offset: 0,
+  };
 
-  let laureatesAll = {laureates:[], byId: {}}
-  let nextLink = '';
+  let laureatesAll = { laureates: [], byId: {} };
+  let nextLink = "";
   do {
     let params = new URLSearchParams(requestParams);
     let queryString = params.toString();
@@ -28,7 +28,7 @@ module.exports = async function () {
     try {
       let responseData = await eleventyFetch(requestUrl, {
         duration: cacheDuration,
-        type: "json"
+        type: "json",
       });
       laureatesAll.meta = responseData.meta;
       laureatesAll.laureates.push(...responseData.laureates);
@@ -39,8 +39,9 @@ module.exports = async function () {
       console.error("Something went wrong with request\n" + requestUrl);
       console.log(err);
     }
-  } while ( nextLink != undefined )
+  } while (nextLink != undefined);
   /* restructure data to allow for easy lookups in templates */
-  laureatesAll.laureates.forEach(l => laureatesAll.byId[l.id] = l);
-  return(laureatesAll);
+  laureatesAll.laureates.forEach(
+    (l) => (laureatesAll.byId[l.id] = l));
+  return laureatesAll;
 };
