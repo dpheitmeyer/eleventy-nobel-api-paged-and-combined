@@ -3,7 +3,7 @@ title: API paging and combining with Nobel Prizes
 layout: base
 ---
 <div class="container-prizes">
-  {% focr prize in prizes.nobelPrizes %}
+  {% for prize in prizes.nobelPrizes %}
     <section class="prize">
       <h3>{% render "prize" with prize as prize %}</h3>
       {% if prize._motivationsSame %}
