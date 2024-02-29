@@ -9,12 +9,6 @@ const baseUrlPrizes = "https://api.nobelprize.org/2.1/nobelPrizes";
 
      
 module.exports = async function () {
-  /*
-  sort
-  limit
-  nobelPrizeYear (end year)
-  yearTo (start year)
-  */
   let requestParams = {
     sort: "desc",
     limit: limit,

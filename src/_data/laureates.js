@@ -7,12 +7,6 @@ module.exports = async function () {
      https://www.nobelprize.org/about/developer-zone-2/  */
 
   let baseUrl = "https://api.nobelprize.org/2.1/laureates";
-  /*
-  sort
-  limit
-  nobelPrizeYear (end year)
-  yearTo (start year)
-  */
   let requestParams = {
     limit: limit,
     offset: 0,
